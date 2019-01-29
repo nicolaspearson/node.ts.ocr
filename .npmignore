@@ -6,10 +6,12 @@ test/
 tsconfig.json
 *.tgz
 *.log
+*.pdf
+*.png
 .editorconfig
 .prettierrc
 tslint.json
-src/example
+test
 
 # Keep
 !index.d.ts

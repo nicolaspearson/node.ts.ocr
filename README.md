@@ -1,6 +1,6 @@
 # Node Typescript OCR
 
-A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using [Tesseract.js](http://tesseract.projectnaptha.com/).
+A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using [Tesseract](https://github.com/tesseract-ocr/tesseract).
 
 ## Installation
 
@@ -10,13 +10,13 @@ A Typescript implementation for PDF / Image OCR (Optical Character Recognition) 
 
 After installing node.ts.ocr, the following binaries need to be on your system, as well as in the paths in your environment settings.
 
-### PDF To Text
+### PDF To Text & PDF Info
 
 Many PDF's already have plain text embedded in them, either because they were born-digital (i.e. created from a word processing document) or because OCR was already performed on them. If we are able to extract the text using this utility we do not need to perform image conversion and subsequently OCR.
 
 **OSX**
 
-`pdftotext` is included as part of the `xpdf` utilities library.
+`pdftotext` & `pdfinfo` are included as part of the `xpdf` utilities library.
 
 ```bash
 brew install xpdf
@@ -24,7 +24,7 @@ brew install xpdf
 
 **Ubuntu**
 
-`pdftotext` is included in the `poppler-utils` library
+`pdftotext` & `pdfinfo` are included in the `poppler-utils` library.
 
 ```bash
 sudo apt-get install poppler-utils
@@ -43,12 +43,14 @@ pdftotext /path/to/document.pdf output.txt
 A PDF is a jumble of instructions for how to render a document on a screen or page. Although it may contain images, a PDF is not itself an image, and therefore we can't perform OCR on it directly. To convert PDF's to images, we use [ImageMagick's](https://www.imagemagick.org/) convert function which depends on [Ghostscript](https://www.ghostscript.com/).
 
 **OSX**
+
 ```bash
 brew install imagemagick
 brew install gs
 ```
 
 **Ubuntu**
+
 ```bash
 sudo apt-get update
 sudo apt-get install imagemagick --fix-missing
@@ -63,17 +65,74 @@ Convert a PDF to a TIFF representation:
 convert -density 300 /path/to/document.pdf -depth 8 -strip -background white -alpha off image.tiff
 ```
 
-Once we have a TIFF representation of the document, we can use Tesseract to (attempt to) extract plain text:
+### Tesseract
+
+Tesseract is Open Source OCR Engine.
+
+**OSX**
+
+```bash
+brew install tesseract
+```
+
+**Ubuntu**
+
+```bash
+sudo apt-get install tesseract-ocr
+```
+
+**CLI Example**
+
+Once we have a TIFF representation of the document, we can use Tesseract to (attempt to) extract the plain text:
 
 ```bash
 tesseract image.tiff output.txt
 ```
-_Note this command is only possible if you have installed Tesseract on your OS_
+
+**Optimization**
+
+If you only need to handle ASCII characters, the accuracy of the OCR process can be increased by limiting the tesseract output. To do this copy the alphanumeric file included with this module into the tess-data folder on your system.
+
+```
+cp "node_modules/node-ts-ocr/share/configs/alphanumeric" "/usr/share/tesseract-ocr/tessdata/configs/alphanumeric"
+```
 
 ## Usage
 
-The following functions are available
+### Methods
+
+**`extractInfo(pdfPath: string)`**
+
+Retrieve the pdf info using the pdfinfo binary and parse the result to a key value object.
+
+**`extractText(pdfPath: string, options?: ExtractTextOptions)`**
+
+Extracts the text from the pdf using the pdf-to-text binary
+
+**`invokePdfToTiff(outDir: string, pdfPath: string, options?: ExtractTextOptions)`**
+
+Converts a PDF file to its TIFF representation
+
+**`invokeImageOcr(outDir: string, imagePath: string, options?: ExtractTextOptions)`**
+
+Performs OCR on an image in order to extract the text
+
+### Options
+
+**`ExtractTextOptions`**
+
+The arguments are key value pairs of valid command line arguments for the respective binary.
+
+```
+ExtractTextOptions {
+  pdfToTextArgs?: KeyValue;
+  convertArgs?: KeyValue;
+  convertDensity?: number;
+  tesseractArgs?: KeyValue;
+  tesseractLang?: string;
+}
+```
 
 ## Docker
 
-You can run this in a docker image as follows
+Coming Soon...
