@@ -12,6 +12,7 @@ tsconfig.json
 .prettierrc
 tslint.json
 test
+*.config.js
 
 # Keep
 !index.d.ts
