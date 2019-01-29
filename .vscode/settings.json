@@ -1,7 +1,7 @@
 // Place your settings in this file to overwrite default and user settings.
 {
 	"editor.formatOnPaste": false,
-	"editor.formatOnSave": false,
+	"editor.formatOnSave": true,
 	"editor.autoIndent": true,
 	"editor.tabSize": 4,
 	"editor.detectIndentation": true,

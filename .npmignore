@@ -13,4 +13,4 @@ src/example
 
 # Keep
 !index.d.ts
-!src/index.js
+!src/**/*.js
