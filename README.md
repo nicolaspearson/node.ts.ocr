@@ -1,5 +1,7 @@
 # Node Typescript OCR
 
+[![Current Version](https://img.shields.io/npm/v/node-ts-ocr.svg)](https://www.npmjs.com/package/node-ts-ocr)
+
 A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using [Tesseract](https://github.com/tesseract-ocr/tesseract).
 
 ## Installation
