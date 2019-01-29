@@ -1,0 +1,37 @@
+{
+	"name": "node-ts-ocr",
+	"version": "1.0.0",
+	"description": "A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using Tesseract.js",
+	"main": "src/index.js",
+	"scripts": {
+		"build": "npm run tslint && rm -rf ./src/index.js && npm run build:ts",
+		"build:ts": "tsc --rootDir ./src/",
+		"prettier": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+		"example": "ts-node ./src/example/index.ts",
+		"tslint": "tslint --fix -c tslint.json -p tsconfig.json",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"ocr",
+		"tesseract",
+		"pdf",
+		"optical",
+		"character",
+		"recognition",
+		"nodejs",
+		"typescript"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nicolaspearson/node.ts.ocr"
+	},
+	"author": "Nicolas Pearson",
+	"license": "BSD-3-Clause",
+	"devDependencies": {
+		"@types/node": "~10.12.19",
+		"prettier": "~1.16.1",
+		"ts-node": "~8.0.2",
+		"tslint": "~5.12.1",
+		"typescript": "~3.2.4"
+	}
+}
