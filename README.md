@@ -11,10 +11,10 @@ A Typescript implementation for PDF / Image OCR (Optical Character Recognition) 
 
 ## Test Coverage
 
-![Coverage lines](./coverage/badge-lines.svg)
-![Coverage functions](./coverage/badge-functions.svg)
-![Coverage branches](./coverage/badge-branches.svg)
-![Coverage statements](./coverage/badge-statements.svg)
+![Coverage lines](https://raw.githubusercontent.com/nicolaspearson/node.ts.ocr/master/coverage/badge-lines.svg?sanitize=true)
+![Coverage functions](https://raw.githubusercontent.com/nicolaspearson/node.ts.ocr/master/coverage/badge-functions.svg?sanitize=true)
+![Coverage branches](https://raw.githubusercontent.com/nicolaspearson/node.ts.ocr/master/coverage/badge-branches.svg?sanitize=true)
+![Coverage statements](https://raw.githubusercontent.com/nicolaspearson/node.ts.ocr/master/coverage/badge-statements.svg?sanitize=true)
 
 ## Installation
 

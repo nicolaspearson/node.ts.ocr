@@ -1,6 +1,6 @@
 {
 	"name": "node-ts-ocr",
-	"version": "1.0.3",
+	"version": "1.0.5",
 	"description": "A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using Tesseract",
 	"main": "src/index.js",
 	"scripts": {
@@ -29,7 +29,7 @@
 		"url": "git+https://github.com/nicolaspearson/node.ts.ocr"
 	},
 	"author": "Nicolas Pearson",
-	"license": "BSD-3-Clause",
+	"license": "MIT",
 	"dependencies": {
 		"temp": "~0.9.0"
 	},
