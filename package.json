@@ -9,7 +9,8 @@
 		"prettier": "prettier --write \"src/**/*.{ts,tsx,css}\"",
 		"example": "ts-node ./src/example/index.ts",
 		"tslint": "tslint --fix -c tslint.json -p tsconfig.json",
-		"test": "jest --coverage"
+		"test": "jest --coverage",
+		"prepare": "npm run build"
 	},
 	"keywords": [
 		"ocr",
