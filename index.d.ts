@@ -1,4 +1,4 @@
-export interface KeyValue {
+interface KeyValue {
 	[key: string]: string | number;
 }
 
@@ -10,7 +10,7 @@ interface ExtractTextOptions {
 	tesseractLang?: string;
 }
 
-export default class Ocr {
+declare class Ocr {
 	/**
 	 * Retrieve the pdf info using the pdfinfo binary
 	 * and parse the result to a key value object.
@@ -65,3 +65,5 @@ export default class Ocr {
 		options?: ExtractTextOptions
 	): Promise<string>;
 }
+
+export { ExtractTextOptions, KeyValue, Ocr };
