@@ -17,21 +17,21 @@ declare class Ocr {
 	 *
 	 * Note: requires pdfinfo to be installed
 	 *
-	 * @param pdfPath absolute path to the pdf file
+	 * @param filePath absolute path to the file
 	 * @returns Promise<KeyValue> the extracted pdf info
 	 */
-	public static extractInfo(pdfPath: string): Promise<KeyValue>;
+	public static extractInfo(filePath: string): Promise<KeyValue>;
 
 	/**
 	 * Extracts the text from the pdf using the pdftotext binary
 	 *
 	 * Note: requires pdftotext, Tesseract, ImageMagick, and GhostScript to be installed
 	 *
-	 * @param pdfPath absolute path to the pdf file
+	 * @param filePath absolute path to the file
 	 * @param options ExtractTextOptions e.g. { pdfToTextArgs: { f: 1, l: 4 } }, includes page 1 to 4
 	 * @returns Promise<string> the text contained in the pdf file
 	 */
-	public static extractText(pdfPath: string, options?: ExtractTextOptions): Promise<string>;
+	public static extractText(filePath: string, options?: ExtractTextOptions): Promise<string>;
 
 	/**
 	 * Converts a PDF file to its TIFF representation using the convert binary
@@ -39,13 +39,13 @@ declare class Ocr {
 	 * Note: requires ImageMagick, and GhostScript to be installed
 	 *
 	 * @param outDir the desired output directory
-	 * @param pdfPath absolute path to the pdf file
+	 * @param filePath absolute path to the file
 	 * @param options ExtractTextOptions e.g. { convertDensity: 600, convertArgs: { trim: '' } }, sets the convert density to 600, and trim to on
 	 * @returns Promise<string> the output path of the generated tiff
 	 */
 	public static invokePdfToTiff(
 		outDir: string,
-		pdfPath: string,
+		filePath: string,
 		options?: ExtractTextOptions
 	): Promise<string>;
 

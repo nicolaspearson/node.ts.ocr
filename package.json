@@ -1,6 +1,6 @@
 {
 	"name": "node-ts-ocr",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using Tesseract",
 	"main": "src/index.js",
 	"scripts": {
@@ -11,8 +11,7 @@
 		"tslint": "tslint --fix -c tslint.json -p tsconfig.json",
 		"test": "jest",
 		"test:coverage": "npm test -- --coverage",
-		"test:badges": "npm run test:coverage  && jest-coverage-badges",
-		"prepare": "npm run build"
+		"test:badges": "npm run test:coverage && jest-coverage-badges"
 	},
 	"keywords": [
 		"ocr",

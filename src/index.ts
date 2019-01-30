@@ -27,16 +27,16 @@ class Ocr {
 	 *
 	 * Note: requires pdfinfo to be installed
 	 *
-	 * @param pdfPath absolute path to the pdf file
+	 * @param filePath absolute path to the file
 	 * @returns Promise<KeyValue> the extracted pdf info
 	 */
-	public static async extractInfo(pdfPath: string): Promise<KeyValue> {
+	public static async extractInfo(filePath: string): Promise<KeyValue> {
 		try {
-			const exists = await existsAsync(pdfPath);
+			const exists = await existsAsync(filePath);
 			if (!exists) {
 				throw new Error('No file exists at the path you specified');
 			}
-			const bin = childProcess.spawn('pdfinfo', ['-box', pdfPath]);
+			const bin = childProcess.spawn('pdfinfo', ['-box', filePath]);
 			return new Promise<KeyValue>((resolve, reject) => {
 				this.binaryListener(bin, (error: Error | string | undefined, data?: string) => {
 					if (error) {
@@ -58,47 +58,50 @@ class Ocr {
 	 *
 	 * Note: requires pdftotext, Tesseract, ImageMagick, and GhostScript to be installed
 	 *
-	 * @param pdfPath absolute path to the pdf file
+	 * @param filePath absolute path to the file
 	 * @param options ExtractTextOptions e.g. { pdfToTextArgs: { f: 1, l: 4 } }, includes page 1 to 4
 	 * @returns Promise<string> the text contained in the pdf file
 	 */
-	public static async extractText(pdfPath: string, options?: ExtractTextOptions): Promise<string> {
+	public static async extractText(filePath: string, options?: ExtractTextOptions): Promise<string> {
 		try {
-			const exists = await existsAsync(pdfPath);
+			const exists = await existsAsync(filePath);
 			if (!exists) {
 				throw new Error('No file exists at the path you specified');
 			}
 
 			const args: string[] = [];
-			if (options && options.pdfToTextArgs) {
-				// Parse all provided options to command line arguments
-				for (const [key, value] of Object.entries(options.pdfToTextArgs)) {
-					args.push(`-${key}`);
-					args.push(`${value}`);
-				}
-			}
-			args.push('-layout');
-			args.push('-enc');
-			args.push('UTF-8');
-			args.push(pdfPath);
-			args.push('-');
-
-			const bin = childProcess.spawn('pdftotext', args);
-			const pdfToTextResult: string = await new Promise<string>((resolve, reject) => {
-				this.binaryListener(bin, (error: Error | string | undefined, data?: string) => {
-					if (error) {
-						reject(error);
-					} else if (data === undefined) {
-						reject(new Error('PDF text could NOT be extracted'));
-					} else {
-						resolve(data);
+			// Skip this step if the file is not a PDF
+			if (filePath.endsWith('.pdf')) {
+				if (options && options.pdfToTextArgs) {
+					// Parse all provided options to command line arguments
+					for (const [key, value] of Object.entries(options.pdfToTextArgs)) {
+						args.push(`-${key}`);
+						args.push(`${value}`);
 					}
-				});
-			});
+				}
+				args.push('-layout');
+				args.push('-enc');
+				args.push('UTF-8');
+				args.push(filePath);
+				args.push('-');
 
-			if (pdfToTextResult && pdfToTextResult.trim() !== '') {
-				// We were able to extract the text without using OCR
-				return pdfToTextResult;
+				const bin = childProcess.spawn('pdftotext', args);
+				const pdfToTextResult: string = await new Promise<string>((resolve, reject) => {
+					this.binaryListener(bin, (error: Error | string | undefined, data?: string) => {
+						if (error) {
+							reject(error);
+						} else if (data === undefined) {
+							reject(new Error('PDF text could NOT be extracted'));
+						} else {
+							resolve(data);
+						}
+					});
+				});
+
+				if (pdfToTextResult && pdfToTextResult.trim() !== '') {
+					// We were able to extract the text without using OCR
+					return pdfToTextResult;
+				}
 			}
 
 			// We need to extract the result using OCR
@@ -108,7 +111,7 @@ class Ocr {
 			// Step 2: Convert the PDF to a TIFF
 			let tiffOutputPath: string;
 			try {
-				tiffOutputPath = await this.invokePdfToTiff(tmpDir, pdfPath, options);
+				tiffOutputPath = await this.invokePdfToTiff(tmpDir, filePath, options);
 			} catch (error) {
 				if (error) {
 					throw error;
@@ -129,19 +132,19 @@ class Ocr {
 	 * Note: requires ImageMagick, and GhostScript to be installed
 	 *
 	 * @param outDir the desired output directory
-	 * @param pdfPath absolute path to the pdf file
+	 * @param filePath absolute path to the file
 	 * @param options ExtractTextOptions e.g. { convertDensity: 600, convertArgs: { trim: '' } }, sets the convert density to 600, and trim to on
 	 * @returns Promise<string> the output path of the generated tiff
 	 */
 	public static async invokePdfToTiff(
 		outDir: string,
-		pdfPath: string,
+		filePath: string,
 		options?: ExtractTextOptions
 	): Promise<string> {
 		const args: string[] = [];
 		args.push('-density');
 		args.push(`${options && options.convertDensity ? options.convertDensity : 300}`);
-		args.push(pdfPath);
+		args.push(filePath);
 		args.push('-depth');
 		args.push('8');
 		args.push('-strip');
@@ -216,7 +219,7 @@ class Ocr {
 	 * @param data the input data
 	 * @returns KeyValue
 	 */
-	private static convertDataToKeyValueObject(data: string) {
+	public static convertDataToKeyValueObject(data: string) {
 		const result: KeyValue = {};
 		// split by new line
 		const lines = data.split(/\n/g);
@@ -257,7 +260,7 @@ class Ocr {
 	 * @param callback The callback method
 	 * @returns void
 	 */
-	private static binaryListener(
+	public static binaryListener(
 		bin: any,
 		callback: (error: Error | string | undefined, data?: string) => void
 	): void {

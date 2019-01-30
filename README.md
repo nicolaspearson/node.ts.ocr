@@ -121,23 +121,23 @@ import * as temp from 'temp';
 export async function getPdfText(fileName: string): Promise<string> {
 	// Assuming your file resides in a directory named sample
 	const relativePath = path.join('sample', fileName);
-	const pdfPath = path.join(__dirname, relativePath);
+	const filePath = path.join(__dirname, relativePath);
 	// Extract the text and return the result
-	return await Ocr.extractText(pdfPath);
+	return await Ocr.extractText(filePath);
 }
 ```
 
 ### Methods
 
-**`extractInfo(pdfPath: string)`**
+**`extractInfo(filePath: string)`**
 
 Retrieve the pdf info using the pdfinfo binary and parse the result to a key value object.
 
-**`extractText(pdfPath: string, options?: ExtractTextOptions)`**
+**`extractText(filePath: string, options?: ExtractTextOptions)`**
 
 Extracts the text from the pdf using the pdftotext binary
 
-**`invokePdfToTiff(outDir: string, pdfPath: string, options?: ExtractTextOptions)`**
+**`invokePdfToTiff(outDir: string, filePath: string, options?: ExtractTextOptions)`**
 
 Converts a PDF file to its TIFF representation using the convert binary
 

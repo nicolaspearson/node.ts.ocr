@@ -15,7 +15,7 @@ describe('Extract Text Tests', () => {
 			expect(result).toBeDefined();
 			expect(result).toContain('00001-001-0002');
 		} catch (error) {
-			expect(error).toBeDefined();
+			expect(error).toBeNull();
 			console.log(error);
 		}
 
@@ -33,7 +33,7 @@ describe('Extract Text Tests', () => {
 			expect(result).toBeDefined();
 			expect(result).toContain('00001-001-0002');
 		} catch (error) {
-			expect(error).toBeDefined();
+			expect(error).toBeNull();
 			console.log(error);
 		}
 
@@ -53,7 +53,7 @@ describe('Extract Text Tests', () => {
 			expect(result).toContain('National Airspace System');
 			expect(result).toContain('WHAT BENEFITS ARE PROVIDED BY CDRs?');
 		} catch (error) {
-			expect(error).toBeDefined();
+			expect(error).toBeNull();
 			console.log(error);
 		}
 
@@ -73,7 +73,7 @@ describe('Extract Text Tests', () => {
 			expect(result).toContain('TraceMonkey');
 			expect(result).toContain('relationships and object representations can change during exec');
 		} catch (error) {
-			expect(error).toBeDefined();
+			expect(error).toBeNull();
 			console.log(error);
 		}
 
@@ -96,7 +96,30 @@ describe('Extract Text Tests', () => {
 			expect(result).toBeDefined();
 			expect(result).toContain('HellO World');
 		} catch (error) {
-			expect(error).toBeDefined();
+			expect(error).toBeNull();
+			console.log(error);
+		}
+
+		done();
+	});
+
+	it('should be able to extract text from sample-low.jpg', async (done) => {
+		jest.setTimeout(15 * 1000);
+		const fileName = 'sample-low.jpg';
+		const relativePath = path.join('sample', fileName);
+		const jpgPath = path.join(__dirname, relativePath);
+
+		try {
+			const options: ExtractTextOptions = {
+				convertDensity: 600,
+				convertArgs: { trim: '' },
+				tesseractLang: 'eng',
+				tesseractArgs: { psm: 6 }
+			};
+			const result: string = await Ocr.extractText(jpgPath, options);
+			expect(result).toBeDefined();
+		} catch (error) {
+			expect(error).toBeNull();
 			console.log(error);
 		}
 
