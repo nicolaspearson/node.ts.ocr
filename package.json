@@ -9,7 +9,9 @@
 		"prettier": "prettier --write \"src/**/*.{ts,tsx,css}\"",
 		"example": "ts-node ./src/example/index.ts",
 		"tslint": "tslint --fix -c tslint.json -p tsconfig.json",
-		"test": "jest --coverage",
+		"test": "jest",
+		"test:coverage": "npm test -- --coverage",
+		"test:badges": "npm run test:coverage  && jest-coverage-badges",
 		"prepare": "npm run build"
 	},
 	"keywords": [
@@ -36,6 +38,7 @@
 		"@types/node": "~10.12.19",
 		"@types/temp": "~0.8.32",
 		"jest": "~23.6.0",
+		"jest-coverage-badges": "^1.1.2",
 		"prettier": "~1.16.1",
 		"ts-jest": "~23.10.5",
 		"ts-node": "~8.0.2",

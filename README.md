@@ -1,6 +1,15 @@
 # Node Typescript OCR
 
+[![License][license-image]][license-url]
 [![Current Version](https://img.shields.io/npm/v/node-ts-ocr.svg)](https://www.npmjs.com/package/node-ts-ocr)
+[![npm](https://img.shields.io/npm/dw/node-ts-ocr.svg)](https://www.npmjs.com/package/node-ts-ocr)
+:./coverage/badge-branches.svg:
+:./coverage/badge-functions.svg:
+:./coverage/badge-lines.svg:
+:./coverage/badge-statements.svg:
+
+[license-url]: https://opensource.org/licenses/MIT
+[license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
 
 A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using [Tesseract](https://github.com/tesseract-ocr/tesseract).
 

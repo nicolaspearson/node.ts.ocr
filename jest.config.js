@@ -5,5 +5,6 @@ module.exports = {
 	transform: {
 		'^.+\\.tsx?$': 'ts-jest'
 	},
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+	coverageReporters: ['json-summary', 'text', 'lcov']
 };
