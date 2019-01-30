@@ -3,6 +3,7 @@
 *.map
 .vscode/
 test/
+coverage/
 tsconfig.json
 *.tgz
 *.log
