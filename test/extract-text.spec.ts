@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as temp from 'temp';
 
-import { Ocr } from '../src/index';
+import { ExtractTextOptions, Ocr } from '../src/index';
 
 describe('Extract Text Tests', () => {
 	it('should be able to extract pdf text from single-page.pdf', async (done) => {
@@ -47,9 +47,31 @@ describe('Extract Text Tests', () => {
 		const pdfPath = path.join(__dirname, relativePath);
 
 		try {
-			const result: string = await Ocr.extractText(pdfPath);
+			const options: ExtractTextOptions = { convertDensity: 400, convertArgs: { trim: '' } };
+			const result: string = await Ocr.extractText(pdfPath, options);
 			expect(result).toBeDefined();
 			expect(result).toContain('National Airspace System');
+			expect(result).toContain('WHAT BENEFITS ARE PROVIDED BY CDRs?');
+		} catch (error) {
+			expect(error).toBeDefined();
+			console.log(error);
+		}
+
+		done();
+	});
+
+	it('should be able to extract pdf text from multi-page-ocr.pdf', async (done) => {
+		jest.setTimeout(15 * 1000);
+		const fileName = 'multi-page-ocr.pdf';
+		const relativePath = path.join('sample', fileName);
+		const pdfPath = path.join(__dirname, relativePath);
+
+		try {
+			const options: ExtractTextOptions = { pdfToTextArgs: { f: 1, l: 4 } };
+			const result: string = await Ocr.extractText(pdfPath, options);
+			expect(result).toBeDefined();
+			expect(result).toContain('TraceMonkey');
+			expect(result).toContain('relationships and object representations can change during exec');
 		} catch (error) {
 			expect(error).toBeDefined();
 			console.log(error);
@@ -66,7 +88,11 @@ describe('Extract Text Tests', () => {
 
 		try {
 			const tmpDir = temp.mkdirSync('tmp');
-			const result: string = await Ocr.invokeImageOcr(tmpDir, pngPath);
+			const options: ExtractTextOptions = {
+				tesseractLang: 'eng',
+				tesseractArgs: { psm: 6 }
+			};
+			const result: string = await Ocr.invokeImageOcr(tmpDir, pngPath, options);
 			expect(result).toBeDefined();
 			expect(result).toContain('HellO World');
 		} catch (error) {

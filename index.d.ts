@@ -18,28 +18,30 @@ export default class Ocr {
 	 * Note: requires pdfinfo to be installed
 	 *
 	 * @param pdfPath absolute path to the pdf file
-	 * @returns Promise<KeyValue>
+	 * @returns Promise<KeyValue> the extracted pdf info
 	 */
 	public static extractInfo(pdfPath: string): Promise<KeyValue>;
 
 	/**
-	 * Extracts the text from the pdf using the pdf-to-text binary
+	 * Extracts the text from the pdf using the pdftotext binary
 	 *
 	 * Note: requires pdftotext, Tesseract, ImageMagick, and GhostScript to be installed
 	 *
 	 * @param pdfPath absolute path to the pdf file
-	 * @param ExtractTextOptions options, e.g. { pdfToTextArgs: {f: 1, l: 23} }, includes page 1 to 23
-	 * @returns Promise<string>
+	 * @param options ExtractTextOptions e.g. { pdfToTextArgs: { f: 1, l: 4 } }, includes page 1 to 4
+	 * @returns Promise<string> the text contained in the pdf file
 	 */
 	public static extractText(pdfPath: string, options?: ExtractTextOptions): Promise<string>;
 
 	/**
-	 * Converts a PDF file to its TIFF representation
+	 * Converts a PDF file to its TIFF representation using the convert binary
+	 *
+	 * Note: requires ImageMagick, and GhostScript to be installed
 	 *
 	 * @param outDir the desired output directory
 	 * @param pdfPath absolute path to the pdf file
-	 * @param ExtractTextOptions options, e.g. { pdfToTextArgs: {f: 1, l: 23} }, includes page 1 to 23
-	 * @returns Promise<string>
+	 * @param options ExtractTextOptions e.g. { convertDensity: 600, convertArgs: { trim: '' } }, sets the convert density to 600, and trim to on
+	 * @returns Promise<string> the output path of the generated tiff
 	 */
 	public static invokePdfToTiff(
 		outDir: string,
@@ -48,12 +50,14 @@ export default class Ocr {
 	): Promise<string>;
 
 	/**
-	 * Performs OCR on an image in order to extract the text
+	 * Performs OCR on an image in order to extract the text using the tesseract binary
+	 *
+	 * Note: requires Tesseract to be installed
 	 *
 	 * @param outDir the desired output directory
 	 * @param imagePath absolute path to the image file
-	 * @param ExtractTextOptions options, e.g. { pdfToTextArgs: {f: 1, l: 23} }, includes page 1 to 23
-	 * @returns Promise<string>
+	 * @param options ExtractTextOptions e.g. { tesseractLang: 'eng', tesseractArgs: { psm: 6 } }, sets page segmentation mode = 6
+	 * @returns Promise<string> the text contained in the image
 	 */
 	public static invokeImageOcr(
 		outDir: string,

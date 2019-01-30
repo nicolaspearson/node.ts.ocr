@@ -123,15 +123,15 @@ Retrieve the pdf info using the pdfinfo binary and parse the result to a key val
 
 **`extractText(pdfPath: string, options?: ExtractTextOptions)`**
 
-Extracts the text from the pdf using the pdf-to-text binary
+Extracts the text from the pdf using the pdftotext binary
 
 **`invokePdfToTiff(outDir: string, pdfPath: string, options?: ExtractTextOptions)`**
 
-Converts a PDF file to its TIFF representation
+Converts a PDF file to its TIFF representation using the convert binary
 
 **`invokeImageOcr(outDir: string, imagePath: string, options?: ExtractTextOptions)`**
 
-Performs OCR on an image in order to extract the text
+Performs OCR on an image in order to extract the text using the tesseract binary
 
 ### Options
 
@@ -147,6 +147,26 @@ ExtractTextOptions {
   tesseractArgs?: KeyValue;
   tesseractLang?: string;
 }
+```
+
+Example `pdfToTextArgs` that only includes page 1 to 4.
+
+Note: this will only work if you already have a searchable PDF, because the `pdftotext` binary can be used to extract the text.
+
+```
+{ pdfToTextArgs: { f: 1, l: 4 } }
+```
+
+Example `convertDensity`, and `convertArgs` that sets the convert density to 600, and the trim option to on.
+
+```
+{ convertDensity: 600, convertArgs: { trim: '' } }
+```
+
+Example `tesseractLang`, and `tesseractArgs` that sets the language to english and, the page segmentation mode = 6
+
+```
+{ tesseractLang: 'eng', tesseractArgs: { psm: 6 } }
 ```
 
 ## Docker
