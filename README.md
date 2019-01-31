@@ -175,10 +175,10 @@ Example `convertDensity`, and `convertArgs` that sets the convert density to 600
 { convertDensity: 600, convertArgs: { trim: '' } }
 ```
 
-Example `tesseractLang`, and `tesseractArgs` that sets the language to english and, the page segmentation mode = 6
+Example `tesseractLang`, and `tesseractArgs` that sets the language to english, the page segmentation mode = 6, and preserves interword spaces.
 
 ```
-{ tesseractLang: 'eng', tesseractArgs: { psm: 6 } }
+{ tesseractLang: 'eng', tesseractArgs: { '-psm': 6, 'c': 'preserve_interword_spaces=1' } }
 ```
 
 ## Docker

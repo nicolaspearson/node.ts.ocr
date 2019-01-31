@@ -1,6 +1,6 @@
 {
 	"name": "node-ts-ocr",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using Tesseract",
 	"main": "src/index.js",
 	"scripts": {
@@ -34,11 +34,11 @@
 	},
 	"devDependencies": {
 		"@types/jest": "~23.3.13",
-		"@types/node": "~10.12.19",
+		"@types/node": "~10.12.20",
 		"@types/temp": "~0.8.32",
 		"jest": "~23.6.0",
-		"jest-coverage-badges": "^1.1.2",
-		"prettier": "~1.16.1",
+		"jest-coverage-badges": "~1.1.2",
+		"prettier": "~1.16.3",
 		"ts-jest": "~23.10.5",
 		"ts-node": "~8.0.2",
 		"tslint": "~5.12.1",

@@ -56,7 +56,7 @@ declare class Ocr {
 	 *
 	 * @param outDir the desired output directory
 	 * @param imagePath absolute path to the image file
-	 * @param options ExtractTextOptions e.g. { tesseractLang: 'eng', tesseractArgs: { psm: 6 } }, sets page segmentation mode = 6
+	 * @param options ExtractTextOptions e.g. { tesseractLang: 'eng', tesseractArgs: { '-psm': 6 } }, sets page segmentation mode = 6
 	 * @returns Promise<string> the text contained in the image
 	 */
 	public static invokeImageOcr(

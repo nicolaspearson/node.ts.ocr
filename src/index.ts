@@ -184,7 +184,7 @@ class Ocr {
 	 *
 	 * @param outDir the desired output directory
 	 * @param imagePath absolute path to the image file
-	 * @param options ExtractTextOptions e.g. { tesseractLang: 'eng', tesseractArgs: { psm: 6 } }, sets page segmentation mode = 6
+	 * @param options ExtractTextOptions e.g. { tesseractLang: 'eng', tesseractArgs: { '-psm': 6 } }, sets page segmentation mode = 6
 	 * @returns Promise<string> the text contained in the image
 	 */
 	public static async invokeImageOcr(
@@ -198,7 +198,7 @@ class Ocr {
 		if (options && options.tesseractArgs) {
 			// Parse all provided options to command line arguments
 			for (const [key, value] of Object.entries(options.tesseractArgs)) {
-				args.push(`--${key}`);
+				args.push(`-${key}`);
 				args.push(`${value}`);
 			}
 		}

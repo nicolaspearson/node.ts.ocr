@@ -88,9 +88,10 @@ describe('Extract Text Tests', () => {
 
 		try {
 			const tmpDir = temp.mkdirSync('tmp');
+			// tslint:disable object-literal-key-quotes
 			const options: ExtractTextOptions = {
 				tesseractLang: 'eng',
-				tesseractArgs: { psm: 6 }
+				tesseractArgs: { '-psm': 6, c: 'preserve_interword_spaces=1' }
 			};
 			const result: string = await Ocr.invokeImageOcr(tmpDir, pngPath, options);
 			expect(result).toBeDefined();
@@ -114,7 +115,7 @@ describe('Extract Text Tests', () => {
 				convertDensity: 600,
 				convertArgs: { trim: '' },
 				tesseractLang: 'eng',
-				tesseractArgs: { psm: 6 }
+				tesseractArgs: { '-psm': 6 }
 			};
 			const result: string = await Ocr.extractText(jpgPath, options);
 			expect(result).toBeDefined();
