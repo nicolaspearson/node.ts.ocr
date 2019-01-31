@@ -145,13 +145,6 @@ class Ocr {
 		args.push('-density');
 		args.push(`${options && options.convertDensity ? options.convertDensity : 300}`);
 		args.push(filePath);
-		args.push('-depth');
-		args.push('8');
-		args.push('-strip');
-		args.push('-background');
-		args.push('white');
-		args.push('-alpha');
-		args.push('off');
 		if (options && options.convertArgs) {
 			// Parse all provided options to command line arguments
 			for (const [key, value] of Object.entries(options.convertArgs)) {
