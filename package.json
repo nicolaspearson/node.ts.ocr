@@ -1,7 +1,7 @@
 {
 	"name": "node-ts-ocr",
 	"version": "1.0.10",
-	"description": "A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using Tesseract, implemented using Typescript.",
+	"description": "A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using Tesseract.",
 	"main": "src/index.js",
 	"scripts": {
 		"build": "npm run tslint && rm -rf ./src/index.js && npm run build:ts",
