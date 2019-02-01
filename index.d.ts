@@ -5,9 +5,7 @@ interface KeyValue {
 interface ExtractTextOptions {
 	pdfToTextArgs?: KeyValue;
 	convertArgs?: KeyValue;
-	convertDensity?: number;
 	tesseractArgs?: KeyValue;
-	tesseractLang?: string;
 }
 
 declare class Ocr {
@@ -40,7 +38,7 @@ declare class Ocr {
 	 *
 	 * @param outDir the desired output directory
 	 * @param filePath absolute path to the file
-	 * @param options ExtractTextOptions e.g. { convertDensity: 600, convertArgs: { trim: '' } }, sets the convert density to 600, and trim to on
+	 * @param options ExtractTextOptions e.g. { convertArgs: { density: '600', trim: '' } }, sets the density to 600, and trim option to on
 	 * @returns Promise<string> the output path of the generated tiff
 	 */
 	public static invokePdfToTiff(
@@ -56,7 +54,7 @@ declare class Ocr {
 	 *
 	 * @param outDir the desired output directory
 	 * @param imagePath absolute path to the image file
-	 * @param options ExtractTextOptions e.g. { tesseractLang: 'eng', tesseractArgs: { '-psm': 6 } }, sets page segmentation mode = 6
+	 * @param options ExtractTextOptions e.g. { tesseractArgs: { 'l': 'eng', '-psm': 6 } }, sets the language to english, and page segmentation mode to 6
 	 * @returns Promise<string> the text contained in the image
 	 */
 	public static invokeImageOcr(

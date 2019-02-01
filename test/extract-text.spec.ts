@@ -4,6 +4,7 @@ import * as temp from 'temp';
 import { ExtractTextOptions, Ocr } from '../src/index';
 
 const convertArgs = {
+	density: '600',
 	quality: '100',
 	trim: '',
 	depth: '8',
@@ -13,7 +14,7 @@ const convertArgs = {
 };
 
 // tslint:disable object-literal-key-quotes
-const tesseractArgs = { '-psm': 6, c: 'preserve_interword_spaces=1' };
+const tesseractArgs = { l: 'eng' };
 
 describe('Extract Text Tests', () => {
 	it('should be able to extract pdf text from single-page.pdf', async (done) => {
@@ -24,7 +25,8 @@ describe('Extract Text Tests', () => {
 
 		try {
 			const options: ExtractTextOptions = {
-				convertArgs
+				convertArgs,
+				tesseractArgs
 			};
 			const result: string = await Ocr.extractText(pdfPath, options);
 			expect(result).toBeDefined();
@@ -66,8 +68,8 @@ describe('Extract Text Tests', () => {
 
 		try {
 			const options: ExtractTextOptions = {
-				convertDensity: 600,
-				convertArgs
+				convertArgs,
+				tesseractArgs
 			};
 			const result: string = await Ocr.extractText(pdfPath, options);
 			expect(result).toBeDefined();
@@ -90,8 +92,8 @@ describe('Extract Text Tests', () => {
 		try {
 			const options: ExtractTextOptions = {
 				pdfToTextArgs: { f: 1, l: 4 },
-				convertDensity: 600,
-				convertArgs
+				convertArgs,
+				tesseractArgs
 			};
 			const result: string = await Ocr.extractText(pdfPath, options);
 			expect(result).toBeDefined();
@@ -115,10 +117,12 @@ describe('Extract Text Tests', () => {
 			const tmpDir = temp.mkdirSync('tmp');
 
 			const options: ExtractTextOptions = {
-				convertDensity: 600,
 				convertArgs,
-				tesseractLang: 'eng',
-				tesseractArgs
+				tesseractArgs: {
+					...tesseractArgs,
+					'-psm': 6,
+					c: 'preserve_interword_spaces=1'
+				}
 			};
 			const result: string = await Ocr.invokeImageOcr(tmpDir, pngPath, options);
 			expect(result).toBeDefined();
@@ -139,7 +143,6 @@ describe('Extract Text Tests', () => {
 
 		try {
 			const options: ExtractTextOptions = {
-				convertDensity: 600,
 				convertArgs: {
 					...convertArgs,
 					verbose: '',
@@ -148,8 +151,11 @@ describe('Extract Text Tests', () => {
 					'auto-level': '',
 					sharpen: '0x4.0'
 				},
-				tesseractLang: 'eng',
-				tesseractArgs
+				tesseractArgs: {
+					...tesseractArgs,
+					'-psm': 6,
+					c: 'preserve_interword_spaces=1'
+				}
 			};
 			const result: string = await Ocr.extractText(jpgPath, options);
 			expect(result).toBeDefined();

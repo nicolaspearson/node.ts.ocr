@@ -103,14 +103,6 @@ Once we have a TIFF representation of the document, we can use Tesseract to (att
 tesseract image.tiff output.txt
 ```
 
-**Optimization**
-
-If you only need to handle ASCII characters, the accuracy of the OCR process can be increased by limiting the tesseract output. To do this copy the alphanumeric file included with this module into the tess-data folder on your system.
-
-```
-cp "node_modules/node-ts-ocr/share/configs/alphanumeric" "/usr/share/tesseract-ocr/tessdata/configs/alphanumeric"
-```
-
 ## Usage
 
 ```typescript
@@ -155,30 +147,28 @@ The arguments are key value pairs of valid command line arguments for the respec
 ExtractTextOptions {
   pdfToTextArgs?: KeyValue;
   convertArgs?: KeyValue;
-  convertDensity?: number;
   tesseractArgs?: KeyValue;
-  tesseractLang?: string;
 }
 ```
 
 Example `pdfToTextArgs` that only includes page 1 to 4.
 
-Note: this will only work if you already have a searchable PDF, because the `pdftotext` binary can be used to extract the text.
+Note: this will only work if you already have a searchable PDF, because the `pdftotext` binary can only be used to extract text from a searchable PDF.
 
 ```
 { pdfToTextArgs: { f: 1, l: 4 } }
 ```
 
-Example `convertDensity`, and `convertArgs` that sets the convert density to 600, and the trim option to on.
+Example `convertArgs` that sets the convert density to 600, and the trim option to on.
 
 ```
-{ convertDensity: 600, convertArgs: { trim: '' } }
+{ convertArgs: { density: '600', trim: '' } }
 ```
 
-Example `tesseractLang`, and `tesseractArgs` that sets the language to english, the page segmentation mode = 6, and preserves interword spaces.
+Example `tesseractArgs` that sets the language to english, the page segmentation mode to 6, and preserves interword spaces.
 
 ```
-{ tesseractLang: 'eng', tesseractArgs: { '-psm': 6, 'c': 'preserve_interword_spaces=1' } }
+{ tesseractArgs: { 'l': 'eng', '-psm': 6, 'c': 'preserve_interword_spaces=1' } }
 ```
 
 ## Docker
