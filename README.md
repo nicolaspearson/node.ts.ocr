@@ -7,7 +7,7 @@
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
 
-A Typescript implementation for PDF / Image OCR (Optical Character Recognition) processing using [Tesseract](https://github.com/tesseract-ocr/tesseract).
+A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using [Tesseract](https://github.com/tesseract-ocr/tesseract), implemented using Typescript.
 
 ## Test Coverage
 
