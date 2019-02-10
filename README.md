@@ -3,6 +3,7 @@
 [![License][license-image]][license-url]
 [![Current Version](https://img.shields.io/npm/v/node-ts-ocr.svg)](https://www.npmjs.com/package/node-ts-ocr)
 [![npm](https://img.shields.io/npm/dw/node-ts-ocr.svg)](https://www.npmjs.com/package/node-ts-ocr)
+![](https://img.shields.io/bundlephobia/min/node-ts-ocr.svg?style=flat)
 
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
