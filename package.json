@@ -1,6 +1,6 @@
 {
 	"name": "node-ts-ocr",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using Tesseract.",
 	"main": "src/index.js",
 	"scripts": {
@@ -11,7 +11,9 @@
 		"tslint": "tslint --fix -c tslint.json -p tsconfig.json",
 		"test": "jest",
 		"test:coverage": "npm test -- --coverage",
-		"test:badges": "npm run test:coverage && jest-coverage-badges"
+		"test:badges": "npm run test:coverage && jest-coverage-badges",
+		"ncu": "ncu",
+		"ncu:u": "ncu -u"
 	},
 	"keywords": [
 		"ocr",
@@ -33,15 +35,16 @@
 		"temp": "~0.9.0"
 	},
 	"devDependencies": {
-		"@types/jest": "~24.0.11",
-		"@types/node": "~11.13.7",
-		"@types/temp": "~0.8.33",
-		"jest": "~24.7.1",
+		"@types/jest": "~24.0.17",
+		"@types/node": "~12.7.1",
+		"@types/temp": "~0.8.34",
+		"jest": "~24.8.0",
 		"jest-coverage-badges": "~1.1.2",
-		"prettier": "~1.17.0",
+		"npm-check-updates": "~3.1.21",
+		"prettier": "~1.18.2",
 		"ts-jest": "~24.0.2",
-		"ts-node": "~8.1.0",
-		"tslint": "~5.16.0",
-		"typescript": "~3.4.5"
+		"ts-node": "~8.3.0",
+		"tslint": "~5.18.0",
+		"typescript": "~3.5.3"
 	}
 }
