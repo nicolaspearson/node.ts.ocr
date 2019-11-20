@@ -1,6 +1,6 @@
 {
 	"name": "node-ts-ocr",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using Tesseract.",
 	"main": "src/index.js",
 	"scripts": {
@@ -32,19 +32,19 @@
 	"author": "Nicolas Pearson",
 	"license": "MIT",
 	"dependencies": {
-		"temp": "~0.9.0"
+		"temp": "~0.9.1"
 	},
 	"devDependencies": {
-		"@types/jest": "~24.0.17",
-		"@types/node": "~12.7.1",
+		"@types/jest": "~24.0.23",
+		"@types/node": "~12.12.11",
 		"@types/temp": "~0.8.34",
-		"jest": "~24.8.0",
+		"jest": "~24.9.0",
 		"jest-coverage-badges": "~1.1.2",
-		"npm-check-updates": "~3.1.21",
-		"prettier": "~1.18.2",
-		"ts-jest": "~24.0.2",
-		"ts-node": "~8.3.0",
-		"tslint": "~5.18.0",
-		"typescript": "~3.5.3"
+		"npm-check-updates": "~3.2.1",
+		"prettier": "~1.19.1",
+		"ts-jest": "~24.1.0",
+		"ts-node": "~8.5.2",
+		"tslint": "~5.20.1",
+		"typescript": "~3.7.2"
 	}
 }
