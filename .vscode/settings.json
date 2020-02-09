@@ -2,7 +2,7 @@
 {
 	"editor.formatOnPaste": false,
 	"editor.formatOnSave": true,
-	"editor.autoIndent": true,
+	"editor.autoIndent": "keep",
 	"editor.tabSize": 4,
 	"editor.detectIndentation": true,
 	"editor.insertSpaces": false,
@@ -17,13 +17,9 @@
 		"**/dist": true,
 		"**/build": true
 	},
-	"tslint.enable": true,
 	"tslint.exclude": "**/node_modules/**/*",
-	"tslint.validateWithDefaultConfig": true,
-	"tslint.autoFixOnSave": false,
 	"typescript.format.enable": true,
 	"typescript.validate.enable": true,
 	"typescript.referencesCodeLens.enabled": true,
-	"window.zoomLevel": 0,
 	"editor.renderWhitespace": "boundary"
 }
