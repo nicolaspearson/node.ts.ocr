@@ -36,7 +36,7 @@
 	},
 	"devDependencies": {
 		"@types/jest": "~25.1.3",
-		"@types/node": "~13.7.4",
+		"@types/node": "~13.7.6",
 		"@types/temp": "~0.8.34",
 		"jest": "~25.1.0",
 		"jest-coverage-badges": "~1.1.2",
