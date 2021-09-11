@@ -162,7 +162,7 @@ class Ocr {
 		}
 
 		const outputPath = path.join(outDir, 'tiff_output.tiff');
-		fs.writeFileSync(outputPath, undefined);
+		fs.writeFileSync(outputPath, '');
 		args.push(outputPath);
 
 		// Convert the PDF to a TIFF
