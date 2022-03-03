@@ -14,9 +14,11 @@ interface ExtractTextOptions {
 	tesseractArgs?: KeyValue;
 }
 
+temp.track();
 const execAsync = util.promisify(childProcess.exec);
 const existsAsync = util.promisify(fs.exists);
 const readFileAsync = util.promisify(fs.readFile);
+const tempCleanupAsync = util.promisify(temp.cleanup);
 
 class Ocr {
 	/**
@@ -206,7 +208,9 @@ class Ocr {
 		const cmd = `tesseract ${imagePath} ${outputPath} ${args.join(' ')}`;
 		try {
 			await execAsync(cmd);
-			return await readFileAsync(outputPath + '.txt', 'utf8');
+			const result = await readFileAsync(outputPath + '.txt', 'utf8');
+			await tempCleanupAsync();
+			return result;
 		} catch (error) {
 			throw error;
 		}
