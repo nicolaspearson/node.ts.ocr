@@ -12,6 +12,7 @@ interface ExtractTextOptions {
 	pdfToTextArgs?: KeyValue;
 	convertArgs?: KeyValue;
 	tesseractArgs?: KeyValue;
+	usePdfToTiff ?: boolean;
 }
 
 temp.track();
@@ -71,7 +72,7 @@ class Ocr {
 
 			const args: string[] = [];
 			// Skip this step if the file is not a PDF
-			if (filePath.endsWith('.pdf')) {
+			if (filePath.endsWith('.pdf') && !options?.usePdfToTiff) {
 				if (options && options.pdfToTextArgs) {
 					// Parse all provided options to command line arguments
 					for (const [key, value] of Object.entries(options.pdfToTextArgs)) {

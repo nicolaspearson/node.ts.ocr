@@ -1,6 +1,6 @@
 {
 	"name": "@bilzo/node-ts-ocr",
-	"version": "1.0.15",
+	"version": "1.0.17",
 	"description": "A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using Tesseract.",
 	"main": "src/index.js",
 	"scripts": {
