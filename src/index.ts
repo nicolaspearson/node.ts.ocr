@@ -12,11 +12,14 @@ interface ExtractTextOptions {
 	pdfToTextArgs?: KeyValue;
 	convertArgs?: KeyValue;
 	tesseractArgs?: KeyValue;
+	usePdfToTiff ?: boolean;
 }
 
+temp.track();
 const execAsync = util.promisify(childProcess.exec);
 const existsAsync = util.promisify(fs.exists);
 const readFileAsync = util.promisify(fs.readFile);
+const tempCleanupAsync = util.promisify(temp.cleanup);
 
 class Ocr {
 	/**
@@ -69,7 +72,7 @@ class Ocr {
 
 			const args: string[] = [];
 			// Skip this step if the file is not a PDF
-			if (filePath.endsWith('.pdf')) {
+			if (filePath.endsWith('.pdf') && !options?.usePdfToTiff) {
 				if (options && options.pdfToTextArgs) {
 					// Parse all provided options to command line arguments
 					for (const [key, value] of Object.entries(options.pdfToTextArgs)) {
@@ -162,7 +165,7 @@ class Ocr {
 		}
 
 		const outputPath = path.join(outDir, 'tiff_output.tiff');
-		fs.writeFileSync(outputPath, undefined);
+		fs.writeFileSync(outputPath, '');
 		args.push(outputPath);
 
 		// Convert the PDF to a TIFF
@@ -206,7 +209,9 @@ class Ocr {
 		const cmd = `tesseract ${imagePath} ${outputPath} ${args.join(' ')}`;
 		try {
 			await execAsync(cmd);
-			return await readFileAsync(outputPath + '.txt', 'utf8');
+			const result = await readFileAsync(outputPath + '.txt', 'utf8');
+			await tempCleanupAsync();
+			return result;
 		} catch (error) {
 			throw error;
 		}

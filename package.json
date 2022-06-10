@@ -1,6 +1,6 @@
 {
-	"name": "node-ts-ocr",
-	"version": "1.0.15",
+	"name": "@bilzo/node-ts-ocr",
+	"version": "1.0.17",
 	"description": "A simple wrapper around command-line utils to assist in PDF / Image OCR (Optical Character Recognition) processing using Tesseract.",
 	"main": "src/index.js",
 	"scripts": {
@@ -27,9 +27,9 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nicolaspearson/node.ts.ocr"
+		"url": "git+https://github.com/bilzo-labs/node.ts.ocr.git"
 	},
-	"author": "Nicolas Pearson",
+	"author": "Saras Arya",
 	"license": "MIT",
 	"dependencies": {
 		"temp": "~0.9.1"
